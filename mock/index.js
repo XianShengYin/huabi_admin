@@ -9,7 +9,7 @@ files.forEach(filename => {
   mockList.push(...model)
 })
 
-function handleMock (app) {
+function handleMock(app) {
   mockList.forEach(func => {
     func(app)
   })

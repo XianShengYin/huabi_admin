@@ -23,7 +23,8 @@ module.exports = {
         max: 5,
         allowFirstLine: false
       }
-    }]
+    }],
+    "space-before-function-paren": 0
   },
 
   extends: [

@@ -25,7 +25,7 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist'),
     // 为每个静态文件开启 gzip compression（压缩）
     compress: true,
-    disableHostCheck: true,
+    // 启动端口号
     port: 9000,
     // 开发环境，模块热替换
     hot: true,
