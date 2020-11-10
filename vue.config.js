@@ -10,19 +10,13 @@ module.exports = {
   // 如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建。
   productionSourceMap: false,
   css: {
-    // 默认情况下，只有 *.module.[ext] 结尾的文件才会被视作 CSS Modules 模块。
-    // 设置为 false 后你就可以去掉文件名中的 .module 并将所有的 *.(css|scss|sass|less|styl(us)?) 文件视为 CSS Modules 模块。
-    requireModuleExtension: false,
+    // 是否为 CSS 开启 source map。设置为 true 之后可能会影响构建的性能。
+    sourceMap: false,
     // 向 CSS 相关的 loader 传递选项。
     loaderOptions: {
-      // 给 sass-loader 传递选项     （你可以这样向所有 Sass/Less 样式传入共享的全局变量）
-      // 默认情况下 `sass` 选项会同时对 `sass` 和 `scss` 语法同时生效
-      // 因为 `scss` 语法在内部也是由 sass-loader 处理的
-      // 但是在配置 `prependData` 选项的时候
-      // `scss` 语法会要求语句结尾必须有分号，`sass` 则要求必须没有分号
-      // 在这种情况下，我们可以使用 `scss` 选项，对 `scss` 语法进行单独配置
+      // 向所有的scss传入共享的全局变量。
       scss: {
-        // prependData: '@import "~@/variables.scss";'
+        additionalData: '@import "~@/styles/variables.scss";'
       }
     }
   },
@@ -31,6 +25,7 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist'),
     // 为每个静态文件开启 gzip compression（压缩）
     compress: true,
+    disableHostCheck: true,
     port: 9000,
     // 开发环境，模块热替换
     hot: true,
@@ -38,13 +33,26 @@ module.exports = {
     // 开发服务器禁止显示诸如 Webpack 捆绑包信息之类的消息。 错误和警告仍将显示。
     noInfo: true,
     // 告诉 dev-server 在项目启动后打开默认浏览器。
-    open: true,
+    // open: true,
     // 出现编译器错误或警告时，在浏览器中显示全屏覆盖。
     overlay: {
       warnings: true,
       errors: true
-    }
+    },
     // 在其他中间件之前执行自定义的中间件
-    // before: require('./mock/mock-server.js')
+    before: app => {
+      if (process.env.NODE_ENV === 'development') {
+        const mock = require('./mock')
+        mock(app)
+      }
+    }
+  },
+  // 会通过 webpack-merge 合并到最终的配置中
+  configureWebpack: {
+    // 不需要webpack处理,直接外部引用,可以减少打包组件
+    externals: {
+      vue: 'Vue',
+      'element-ui': 'ElementUI'
+    }
   }
 }
