@@ -1,16 +1,26 @@
 <template>
   <div>
     <el-container>
+      <!-- 左侧边栏 -->
       <el-aside width="200px">
+        <!-- 头像 + 性别 -->
         <el-avatar shape="square" :size="50" src="https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png">
           <!-- 图片加载失败是显示的默认图片 -->
           <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png">
         </el-avatar>
+        <!-- 名称 -->
+        <!-- 座右铭 -->
+        <!-- 菜单 -->
       </el-aside>
+      <!-- 右侧区域 -->
       <el-container>
+        <!-- 头部区域 -->
         <el-header>Header</el-header>
+        <!-- 主体区域 -->
         <el-main>
-          <transition name="fade">
+          <!-- 过渡动画 -->
+          <transition name="fade-transform">
+            <!-- Vue页面组件显示区域 -->
             <router-view />
           </transition>
         </el-main>
