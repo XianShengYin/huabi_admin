@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="">
-    <h1>404</h1>
+    <h1>myself</h1>
   </div>
 </template>
 

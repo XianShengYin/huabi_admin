@@ -50,19 +50,30 @@
             </el-submenu>
           </el-menu>
         </el-scrollbar>
-        <!-- 退出登录 -->
-        <div class="sidebar-logout-container">
-          <i class="el-icon-d-arrow-left cursor-pointer" />
-        </div>
       </el-aside>
-      <!-- 主体区域 -->
-      <el-main>
-        <!-- 过渡动画 -->
-        <transition name="fade-transform">
-          <!-- Vue页面组件显示区域 -->
-          <router-view />
-        </transition>
-      </el-main>
+      <!-- 右侧区域 -->
+      <el-container>
+        <!-- 头部区域 -->
+        <el-header>
+          <span>
+            <i class="el-icon-chat-dot-square" />
+          </span>
+          <router-link key="setting" class="" to="/myself">
+            <i class="el-icon-setting" />
+          </router-link>
+          <router-link key="logout" class="" to="/myself">
+            <i class="el-icon-d-arrow-right" />
+          </router-link>
+        </el-header>
+        <!-- 主体区域 -->
+        <el-main>
+          <!-- 过渡动画 -->
+          <transition name="fade-transform">
+            <!-- Vue页面组件显示区域 -->
+            <router-view />
+          </transition>
+        </el-main>
+      </el-container>
     </el-container>
   </div>
 </template>
@@ -83,6 +94,13 @@ export default {
     .el-aside {
       // background-color: $Primary;
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1)
+    }
+    .el-container {
+      .el-header {
+        background-color: #ffffff;
+        box-shadow: 0 1px 4px rgba(0,21,41,.08);
+        line-height: 60px;
+      }
     }
   }
 }
@@ -113,7 +131,7 @@ export default {
 
 .scrollbar-wrapper {
   width: 100%;
-  height: calc(100% - 250px);
+  height: calc(100% - 200px);
 }
 
 .sidebar-menu {
@@ -123,10 +141,7 @@ export default {
   overflow-x: hidden !important;
 }
 
-.sidebar-logout-container {
-  width: 100%;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
+.el-dropdown-link {
+  cursor: pointer;
 }
 </style>

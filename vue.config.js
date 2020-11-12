@@ -21,8 +21,6 @@ module.exports = {
     }
   },
   devServer: {
-    // 内容的来源。仅在需要提供静态文件时才进行配置。
-    contentBase: path.join(__dirname, 'dist'),
     // 为每个静态文件开启 gzip compression（压缩）
     compress: true,
     // 启动端口号

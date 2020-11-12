@@ -9,10 +9,6 @@ body {
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
 }
 
-label {
-  font-weight: 700;
-}
-
 html {
   height: 100%;
   box-sizing: border-box;
@@ -63,4 +59,24 @@ a:hover {
     clear: both;
     height: 0;
   }
+}
+
+// 去掉 el-scrollbar 的横线滚动条
+.el-scrollbar__wrap{
+  overflow-x: hidden !important;
+}
+
+// 字间距 10px
+.letter-spacing10 {
+  letter-spacing: 10px;
+}
+
+// 文字居中
+.text-center {
+  text-align: center;
+}
+
+// 鼠标悬浮时鼠标样式
+.cursor-pointer {
+  cursor: pointer;
 }

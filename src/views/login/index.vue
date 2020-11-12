@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="">
-    登录页面
+    <h1>login</h1>
   </div>
 </template>
 
