@@ -65,15 +65,15 @@ const routes = [
     ]
   },
   {
-    path: '/news',
+    path: '/post',
     component: Layout,
-    redirect: '/news/index',
+    redirect: '/post/index',
     meta: { title: '动态', icon: 'home' },
     children: [
       {
         path: 'index',
-        name: 'news',
-        component: () => import(/* webpackChunkName: "news" */ '@/views/news/index'),
+        name: 'post',
+        component: () => import(/* webpackChunkName: "post" */ '@/views/post/index'),
         hidden: true
       }
     ]
