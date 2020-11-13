@@ -41,10 +41,10 @@
             </el-menu-item>
             <el-submenu class="center" index="7">
               <span slot="title"><span class="spacing10">设</span>置</span>
-              <el-menu-item class="center" index="7-1">
+              <el-menu-item class="submenu-item" index="7-1">
                 <span class="spacing10">系统设</span>置
               </el-menu-item>
-              <el-menu-item class="center" index="7-2">
+              <el-menu-item class="submenu-item" index="7-2">
                 <span class="spacing10">系统日</span>志
               </el-menu-item>
             </el-submenu>
@@ -121,6 +121,11 @@ export default {
   height: 100%;
   width: 100% !important;
   overflow-x: hidden !important;
+}
+
+.submenu-item {
+  text-align: center;
+  background-color: #fafbfc;
 }
 
 .sidebar-logout-container {
