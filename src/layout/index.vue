@@ -21,38 +21,38 @@
             default-active="1"
             unique-opened
           >
-            <el-menu-item class="text-center" index="1">
-              <span class="letter-spacing10">我</span>的
+            <el-menu-item class="center" index="1">
+              <span class="spacing10">我</span>的
             </el-menu-item>
-            <el-menu-item class="text-center" index="2">
-              <span class="letter-spacing10">动</span>态
+            <el-menu-item class="center" index="2">
+              <span class="spacing10">动</span>态
             </el-menu-item>
-            <el-menu-item class="text-center" index="3">
-              <span class="letter-spacing10">评</span>论
+            <el-menu-item class="center" index="3">
+              <span class="spacing10">评</span>论
             </el-menu-item>
-            <el-menu-item class="text-center" index="4">
-              <span class="letter-spacing10">日</span>历
+            <el-menu-item class="center" index="4">
+              <span class="spacing10">日</span>历
             </el-menu-item>
-            <el-menu-item class="text-center" index="5">
-              <span class="letter-spacing10">笔</span>记
+            <el-menu-item class="center" index="5">
+              <span class="spacing10">笔</span>记
             </el-menu-item>
-            <el-menu-item class="text-center" index="6">
-              <span class="letter-spacing10">云</span>盘
+            <el-menu-item class="center" index="6">
+              <span class="spacing10">云</span>盘
             </el-menu-item>
-            <el-submenu class="text-center" index="7">
-              <span slot="title"><span class="letter-spacing10">设</span>置</span>
-              <el-menu-item class="text-center" index="7-1">
-                <span class="letter-spacing10">系统设</span>置
+            <el-submenu class="center" index="7">
+              <span slot="title"><span class="spacing10">设</span>置</span>
+              <el-menu-item class="center" index="7-1">
+                <span class="spacing10">系统设</span>置
               </el-menu-item>
-              <el-menu-item class="text-center" index="7-2">
-                <span class="letter-spacing10">系统日</span>志
+              <el-menu-item class="center" index="7-2">
+                <span class="spacing10">系统日</span>志
               </el-menu-item>
             </el-submenu>
           </el-menu>
         </el-scrollbar>
         <!-- 退出登录 -->
         <div class="sidebar-logout-container">
-          <i class="el-icon-d-arrow-left cursor-pointer" />
+          <i class="el-icon-d-arrow-left pointer" />
         </div>
       </el-aside>
       <!-- 主体区域 -->
