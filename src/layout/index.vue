@@ -18,10 +18,10 @@
         <el-scrollbar class="scrollbar-wrapper">
           <el-menu
             class="sidebar-menu"
-            default-active="1"
+            default-active="/note"
             unique-opened
           >
-            <el-menu-item class="center" index="1">
+            <!-- <el-menu-item class="center" index="1">
               <span class="spacing10">我</span>的
             </el-menu-item>
             <el-menu-item class="center" index="2">
@@ -47,7 +47,8 @@
               <el-menu-item class="submenu-item" index="7-2">
                 <span class="spacing10">系统日</span>志
               </el-menu-item>
-            </el-submenu>
+            </el-submenu> -->
+            <menu-item v-for="(item, index) in menu" :key="index" :item="item" />
           </el-menu>
         </el-scrollbar>
         <!-- 退出登录 -->
@@ -58,7 +59,7 @@
       <!-- 主体区域 -->
       <el-main>
         <!-- 过渡动画 -->
-        <transition name="fade-transform">
+        <transition name="transition" mode="out-in">
           <!-- Vue页面组件显示区域 -->
           <router-view />
         </transition>
@@ -68,7 +69,143 @@
 </template>
 
 <script>
+import MenuItem from '@/components/menu/MenuItem.vue'
 export default {
+  components: { MenuItem },
+  data() {
+    return {
+      menu: [
+        {
+          path: '/login',
+          name: 'login',
+          hidden: true
+        },
+        {
+          path: '/',
+          redirect: '/home',
+          hidden: true,
+          children: [
+            {
+              path: 'home',
+              name: 'home',
+              hidden: true
+            }
+          ]
+        },
+        {
+          path: '/myself',
+          redirect: '/myself/index',
+          title: '我的',
+          titleFront: '我',
+          titleEnd: '的',
+          children: [
+            {
+              path: 'index',
+              name: 'myself',
+              hidden: true
+            }
+          ]
+        },
+        {
+          path: '/post',
+          redirect: '/post/index',
+          title: '动态',
+          titleFront: '动',
+          titleEnd: '态',
+          children: [
+            {
+              path: 'index',
+              name: 'post',
+              hidden: true
+            }
+          ]
+        },
+        {
+          path: '/comment',
+          redirect: '/comment/index',
+          title: '评论',
+          titleFront: '评',
+          titleEnd: '论',
+          children: [
+            {
+              path: 'index',
+              name: 'comment',
+              hidden: true
+            }
+          ]
+        },
+        {
+          path: '/calendar',
+          redirect: '/calendar/index',
+          title: '日历',
+          titleFront: '日',
+          titleEnd: '历',
+          children: [
+            {
+              path: 'index',
+              name: 'calendar',
+              hidden: true
+            }
+          ]
+        },
+        {
+          path: '/note',
+          redirect: '/note/index',
+          title: '笔记',
+          titleFront: '笔',
+          titleEnd: '记',
+          children: [
+            {
+              path: 'index',
+              name: 'note',
+              hidden: true
+            }
+          ]
+        },
+        {
+          path: '/cloudStorage',
+          redirect: '/cloudStorage/index',
+          title: '云盘',
+          titleFront: '云',
+          titleEnd: '盘',
+          children: [
+            {
+              path: 'index',
+              name: 'cloudStorage',
+              hidden: true
+            }
+          ]
+        },
+        {
+          path: '/setting',
+          title: '设置',
+          titleFront: '设',
+          titleEnd: '置',
+          children: [
+            {
+              path: 'sysConfig',
+              name: 'sysConfig',
+              title: '系统设置',
+              titleFront: '系统设',
+              titleEnd: '置'
+            },
+            {
+              path: 'log',
+              name: 'log',
+              title: '系统日志',
+              titleFront: '系统日',
+              titleEnd: '志'
+            }
+          ]
+        },
+        {
+          path: '*',
+          component: () => import('@/views/error/404'),
+          hidden: true
+        }
+      ]
+    }
+  },
   methods: {
 
   }
@@ -81,8 +218,12 @@ export default {
   .el-container {
     height: 100%;
     .el-aside {
-      // background-color: $Primary;
-      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1)
+      background-color: #ffffff !important;
+      box-shadow: 0 2px 4px 0 rgba(150, 150, 150, 0.3);
+    }
+    .el-main {
+      height: 100%;
+      width: calc(100% - 200px);
     }
   }
 }

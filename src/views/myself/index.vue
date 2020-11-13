@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class="">
+  <div class="app-main">
     <h1>myself</h1>
   </div>
 </template>

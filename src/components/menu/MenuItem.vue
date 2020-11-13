@@ -1,22 +1,19 @@
 <template>
   <div v-if="!item.hidden">
-    <template v-if="noChild(item.children)">
-      <router-link>
-        <el-menu-item class="center" :index="item.path">
-          <span class="spacing10">{{ item.meta.title }}</span>{{ item.meta.title }}
-        </el-menu-item>
-      </router-link>
-    </template>
-
-    <el-submenu v-else :index="item.path">
+    <router-link v-if="noChild(item.children)" :to="basePath + item.path">
+      <el-menu-item class="center" :index="item.path">
+        <span class="spacing10">{{ item.titleFront }}</span>{{ item.titleEnd }}
+      </el-menu-item>
+    </router-link>
+    <el-submenu v-else class="center" :index="basePath + item.path">
       <template slot="title">
-        <span class="spacing10">{{ item.meta.title }}</span>{{ item.meta.title }}
+        <span class="spacing10">{{ item.titleFront }}</span>{{ item.titleEnd }}
       </template>
       <menu-item
         v-for="child in item.children"
         :key="child.path"
         :item="child"
-        class="nest-menu"
+        :base-path="item.path + '/'"
       />
     </el-submenu>
   </div>
@@ -27,10 +24,14 @@
 export default {
   name: 'MenuItem',
   props: {
-    // route object
+    // 菜单项
     item: {
       type: Object,
       required: true
+    },
+    basePath: {
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -38,15 +39,12 @@ export default {
   },
   methods: {
     noChild(children = []) {
-      const showingChildren = children.filter(item => {
+      const showChildren = children.filter(item => {
         return !item.hidden
       })
-
-      // Show parent if there are no child router to display
-      if (showingChildren.length === 0) {
+      if (showChildren.length === 0) {
         return true
       }
-
       return false
     }
   }

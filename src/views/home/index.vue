@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class="">
+  <div class="app-main">
     <el-button type="success" @click="goLogin()">
       登录
     </el-button>
