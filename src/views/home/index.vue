@@ -1,15 +1,52 @@
 <!--  -->
 <template>
   <div class="app-main">
-    <el-button type="success" @click="goLogin()">
-      登录
-    </el-button>
-    <el-button type="success" @click="mock1()">
-      Mock1
-    </el-button>
-    <el-button type="success" @click="mock2()">
-      Mock2
-    </el-button>
+    <el-row :gutter="20" class="home-row">
+      <el-col :span="12">
+        <el-card class="home-card">
+          <el-button type="success" @click="goLogin()">
+            登录
+          </el-button>
+          <el-button type="success" @click="mock1()">
+            Mock1
+          </el-button>
+          <el-button type="success" @click="mock2()">
+            Mock2
+          </el-button>
+        </el-card>
+      </el-col>
+      <el-col :span="12">
+        <el-card class="home-card">
+          <el-button @click="showRow = !showRow">
+            OK
+          </el-button>
+        </el-card>
+      </el-col>
+    </el-row>
+    <el-row v-if="showRow" :gutter="20" class="home-row">
+      <el-col :span="12">
+        <el-card class="home-card">
+          <el-input />
+        </el-card>
+      </el-col>
+      <el-col :span="12">
+        <el-card class="home-card">
+          <el-button>ABC</el-button>
+        </el-card>
+      </el-col>
+    </el-row>
+    <el-row v-if="showRow" :gutter="20" class="home-row">
+      <el-col :span="12">
+        <el-card class="home-card">
+          <el-input />
+        </el-card>
+      </el-col>
+      <el-col :span="12">
+        <el-card class="home-card">
+          <el-button>123</el-button>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -23,7 +60,7 @@ export default {
   data () {
     // 这里存放数据
     return {
-
+      showRow: true
     }
   },
   // 监听属性 类似于data概念
@@ -73,5 +110,11 @@ export default {
 </script>
 <style lang='scss' scoped>
 //@import url(); 引入公共css类
+.home-card {
+  height: 300px;
+}
 
+.home-row:not(:last-child) {
+  margin-bottom: 20px;
+}
 </style>

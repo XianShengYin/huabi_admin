@@ -3,23 +3,23 @@
     <el-container>
       <!-- 左侧边栏 -->
       <el-aside width="200px">
-        <!-- 头像 + 性别 -->
-        <div class="sidebar-head-container">
-          <router-link key="userHead" class="sidebar-head-link" to="/">
-            <el-avatar shape="square" :size="50" :src="require('@/assets/default/default-user.png')">
-              <!-- 图片加载失败是显示的默认图片 -->
-              <img src="@/assets/default/default-img.png">
-            </el-avatar>
-          </router-link>
-          <label class="sidebar-name">XXXX</label>
-          <label class="sidebar-motto">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</label>
-        </div>
         <!-- 菜单 -->
         <el-scrollbar class="scrollbar-wrapper">
           <el-menu
             class="sidebar-menu"
             unique-opened
           >
+            <!-- 头像 -->
+            <el-menu-item class="sidebar-head-container" index="/">
+              <router-link key="userHead" class="sidebar-head-link" to="/">
+                <el-avatar shape="square" :size="50" :src="require('@/assets/default/default-user.png')">
+                  <!-- 图片加载失败是显示的默认图片 -->
+                  <img src="@/assets/default/default-img.png">
+                </el-avatar>
+              </router-link>
+              <label class="sidebar-name">XXXX</label>
+              <label class="sidebar-motto">XXXXXXXX</label>
+            </el-menu-item>
             <!-- <el-menu-item class="center" index="1">
               <span class="spacing10">我</span>的
             </el-menu-item>
@@ -239,7 +239,7 @@ export default {
   .sidebar-head-link {
     width: 100%;
     height: 100px;
-    line-height: 150px;
+    line-height: 100px;
   }
   .sidebar-name {
     font-size: 24px;
@@ -249,14 +249,16 @@ export default {
     padding: 10px 15px;
     font-size: 14px;
     color: $Info;
-    white-space: normal;
-    word-break: break-all;
   }
+}
+
+.sidebar-head-container:hover {
+  background-color: unset;
 }
 
 .scrollbar-wrapper {
   width: 100%;
-  height: calc(100% - 250px);
+  height: calc(100% - 50px);
 }
 
 .sidebar-menu {
