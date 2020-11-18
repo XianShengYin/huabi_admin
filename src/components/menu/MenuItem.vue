@@ -2,12 +2,12 @@
   <div v-if="!item.hidden">
     <router-link v-if="noChild(item.children)" :to="basePath + item.path">
       <el-menu-item class="center" :index="item.path">
-        <span class="spacing10">{{ item.titleFront }}</span>{{ item.titleEnd }}
+        <span :class="item.titleEnd?'spacing10':''">{{ item.titleFront || '' }}</span>{{ item.titleEnd || '' }}
       </el-menu-item>
     </router-link>
     <el-submenu v-else class="center" :index="basePath + item.path">
       <template slot="title">
-        <span class="spacing10">{{ item.titleFront }}</span>{{ item.titleEnd }}
+        <span :class="item.titleEnd?'spacing10':''">{{ item.titleFront || '' }}</span>{{ item.titleEnd || '' }}
       </template>
       <menu-item
         v-for="child in item.children"

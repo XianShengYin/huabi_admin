@@ -47,7 +47,7 @@
                 <span class="spacing10">系统日</span>志
               </el-menu-item>
             </el-submenu> -->
-            <menu-item v-for="(item, index) in menu" :key="index" :item="item" />
+            <menu-item v-for="(item, index) in menuItems" :key="index" :item="item" />
           </el-menu>
         </el-scrollbar>
         <!-- 退出登录 -->
@@ -71,6 +71,7 @@
 
 <script>
 import MenuItem from '@/components/menu/MenuItem.vue'
+import { mapGetters } from 'vuex'
 export default {
   components: { MenuItem },
   data() {
@@ -206,6 +207,9 @@ export default {
         }
       ]
     }
+  },
+  computed: {
+    ...mapGetters(['menuItems'])
   },
   methods: {
   }

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '@/store'
 // 自定义组件页面
 import Layout from '@/layout'
 
@@ -152,7 +153,8 @@ const routes = [
 
 console.log('路由', routes)
 
-// 生成菜单,放在store中
+// 路由数据交给 store 生成菜单数据
+store.dispatch('setMenuItems', routes)
 
 const router = new VueRouter({
   routes
