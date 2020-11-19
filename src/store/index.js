@@ -7,10 +7,6 @@ Vue.use(Vuex)
 export function menuFilter(menuItems) {
   const res = []
   menuItems.forEach(item => {
-    if (item.title && item.title.length > 1) {
-      item.titleFront = item.title.substring(0, item.title.length - 2)
-      item.titleEnd = item.title.charAt(item.title.length - 1)
-    }
     if (Array.isArray(item.children)) {
       item.children = menuFilter(item.children)
     }

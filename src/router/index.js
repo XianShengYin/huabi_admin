@@ -45,7 +45,7 @@ const routes = [
     path: '/myself',
     component: Layout,
     redirect: '/myself/index',
-    title: '我的',
+    title: '我',
     children: [
       {
         path: 'index',
