@@ -15,38 +15,11 @@
           <label class="sidebar-motto">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</label>
         </div>
         <!-- 菜单 -->
-        <el-scrollbar class="scrollbar-wrapper">
+        <el-scrollbar class="sidebar-menu-scrollbar">
           <el-menu
             class="sidebar-menu"
             unique-opened
           >
-            <!-- <el-menu-item class="center" index="1">
-              <span class="spacing10">我</span>的
-            </el-menu-item>
-            <el-menu-item class="center" index="2">
-              <span class="spacing10">动</span>态
-            </el-menu-item>
-            <el-menu-item class="center" index="3">
-              <span class="spacing10">评</span>论
-            </el-menu-item>
-            <el-menu-item class="center" index="4">
-              <span class="spacing10">日</span>历
-            </el-menu-item>
-            <el-menu-item class="center" index="5">
-              <span class="spacing10">笔</span>记
-            </el-menu-item>
-            <el-menu-item class="center" index="6">
-              <span class="spacing10">云</span>盘
-            </el-menu-item>
-            <el-submenu class="center" index="7">
-              <span slot="title"><span class="spacing10">设</span>置</span>
-              <el-menu-item class="submenu-item" index="7-1">
-                <span class="spacing10">系统设</span>置
-              </el-menu-item>
-              <el-menu-item class="submenu-item" index="7-2">
-                <span class="spacing10">系统日</span>志
-              </el-menu-item>
-            </el-submenu> -->
             <menu-item v-for="(item, index) in menuItems" :key="index" :item="item" />
           </el-menu>
         </el-scrollbar>
@@ -57,13 +30,15 @@
       </el-aside>
       <!-- 主体区域 -->
       <el-main>
-        <!-- 回到顶部 -->
-        <el-backtop target=".el-main" />
-        <!-- 过渡动画 -->
-        <transition name="transition" mode="out-in">
-          <!-- Vue页面组件显示区域 -->
-          <router-view />
-        </transition>
+        <el-scrollbar class="main-scrollbar">
+          <!-- 回到顶部 -->
+          <el-backtop target=".el-main" />
+          <!-- 过渡动画 -->
+          <transition name="transition" mode="out-in">
+            <!-- Vue页面组件显示区域 -->
+            <router-view />
+          </transition>
+        </el-scrollbar>
       </el-main>
     </el-container>
   </div>
@@ -128,7 +103,7 @@ export default {
   }
 }
 
-.scrollbar-wrapper {
+.sidebar-menu-scrollbar {
   width: 100%;
   height: calc(100% - 250px);
 }
@@ -152,27 +127,32 @@ export default {
   text-align: center;
 }
 
+.main-scrollbar {
+  width: 100%;
+  height: 100%;
+}
+
 .el-backtop {
   box-shadow: 0 0 6px rgba(0,0,0,.3);
 }
 
-.el-main::-webkit-scrollbar {
-  /*滚动条整体样式*/
-  /*高宽分别对应横竖滚动条的尺寸*/
-  width: 5px;
-  height: 1px;
-}
+// .el-main::-webkit-scrollbar {
+//   /*滚动条整体样式*/
+//   /*高宽分别对应横竖滚动条的尺寸*/
+//   width: 5px;
+//   height: 1px;
+// }
 
-.el-main::-webkit-scrollbar-thumb {
-  /*滚动条里面小方块*/
-  border-radius: 5px;
-  background-color: skyblue;
-}
+// .el-main::-webkit-scrollbar-thumb {
+//   /*滚动条里面小方块*/
+//   border-radius: 5px;
+//   background-color: skyblue;
+// }
 
-.el-main::-webkit-scrollbar-track {
-  /*滚动条里面轨道*/
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-  background: #ededed;
-  border-radius: 5px;
-}
+// .el-main::-webkit-scrollbar-track {
+//   /*滚动条里面轨道*/
+//   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+//   background: #ededed;
+//   border-radius: 5px;
+// }
 </style>

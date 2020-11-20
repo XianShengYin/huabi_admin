@@ -4,15 +4,12 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 // 处理路由数据生成菜单数据
-export function menuFilter(menuItems) {
-  const res = []
-  menuItems.forEach(item => {
-    if (Array.isArray(item.children)) {
-      item.children = menuFilter(item.children)
-    }
-    res.push(item)
+function menuFilter(menuItems) {
+  return menuItems.filter(item => {
+    return !item.hidden
+  }).map(v => {
+    return { path: v.path, title: v.title || '', children: menuFilter(v.children || []) }
   })
-  return res
 }
 
 export default new Vuex.Store({

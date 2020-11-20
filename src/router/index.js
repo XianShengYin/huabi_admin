@@ -45,7 +45,7 @@ const routes = [
     path: '/myself',
     component: Layout,
     redirect: '/myself/index',
-    title: '我',
+    title: '我的',
     children: [
       {
         path: 'index',
@@ -150,8 +150,6 @@ const routes = [
     hidden: true
   }
 ]
-
-console.log('路由', routes)
 
 // 路由数据交给 store 生成菜单数据
 store.dispatch('setMenuItems', routes)
