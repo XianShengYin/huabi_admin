@@ -6,25 +6,15 @@ import Layout from '@/layout'
 
 Vue.use(VueRouter)
 
-/*
-{ path: '/user/:id' }
-提供了 path，params 会被忽略
-const userId = '123'
-router.push({ name: 'user', params: { userId }}) // -> /user/123
-router.push({ path: `/user/${userId}` }) // -> /user/123
-
-path: '/login', //路由路径  '/'表示根目录
-name: 'login', //路由名称
-component: Layout, // 使用自定义组件显示页面
-hidden: true, // 不显示在侧边栏中
-children: [] // 子路由
-*/
-
 const routes = [
   {
     path: '/login',
     name: 'login',
+    // route level code-splitting
+    // this generates a separate chunk (home.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "home" */ '@/views/login/index'),
+    // Not displayed in the sidebar
     hidden: true
   },
   {

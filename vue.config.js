@@ -45,6 +45,8 @@ module.exports = {
       }
     }
   },
+  // https://www.jianshu.com/p/714ce38b9fdc config.optimization.runtimeChunk
+  // https://blog.csdn.net/weixin_34294049/article/details/97278751 config.optimization.splitChunks
   // 会通过 webpack-merge 合并到最终的配置中
   configureWebpack: {
     // 不需要webpack处理,直接外部引用,可以减少打包组件
