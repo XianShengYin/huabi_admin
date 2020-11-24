@@ -24,7 +24,7 @@
 export default {
   name: 'MenuItem',
   props: {
-    // 菜单项
+    // menu item
     item: {
       type: Object,
       required: true

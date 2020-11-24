@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-// 处理路由数据生成菜单数据
+// processing menu data
 function menuFilter(menuItems) {
   return menuItems.filter(item => {
     return !item.hidden

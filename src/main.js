@@ -2,8 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import './router/permission' // 权限控制
-import './styles/index.scss' // 全局样式
+import './router/permission' // routing guard
+import './styles/index.scss' // global style
 
 Vue.config.productionTip = false
 
