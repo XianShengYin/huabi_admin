@@ -14,30 +14,35 @@ function menuFilter(menuItems) {
 
 export default new Vuex.Store({
   state: {
-    menuItems: [], // 菜单数据
-    userInfo: {} // 用户数据
+    menuItems: [], // menu data
+    userInfo: {} // user data
   },
   getters: {
-    menuItems: state => state.menuItems
+    menuItems: state => state.menuItems,
+    userInfo: state => state.userInfo
   },
-  // 同步事务
+  // Synchronous transaction
   mutations: {
-    // 设置菜单数据
+    // add menu data
     SET_MENUITEMS: (state, menuItems) => {
       if (Array.isArray(menuItems)) {
         state.menuItems = menuFilter(menuItems)
       }
     },
-    // 设置用户数据
+    // add user data
     SET_USERINFO: (state, userInfo) => {
       state.userInfo = userInfo
     }
   },
-  // 异步事务
+  // Asynchronous transaction
   actions: {
-    // 设置菜单数据
+    // add menu data
     setMenuItems: ({ commit }, menuItems) => {
       commit('SET_MENUITEMS', menuItems)
+    },
+    // add user data
+    setUserInfo: ({ commit }, userInfo) => {
+      commit('SET_USERINFO', userInfo)
     }
   }
 })

@@ -1,49 +1,63 @@
 <!--  -->
 <template>
-  <div class="">
-    <h1>login</h1>
+  <div class="app-main login-container">
+    <!-- https://www.zcool.com.cn/work/ZMjA2ODY4MTI=.html -->
+    <el-image class="login-container-bg" :src="require('@/assets/logo.png')" fit="cover" />
+    <div class="login-form-container">
+      <el-form ref="form" class="login-form" :model="formData" autocomplete="on" label-position="left">
+        <el-form-item label="用户名">
+          <el-input v-model="formData.userName" />
+        </el-form-item>
+        <el-form-item label="密码">
+          <el-input v-model="formData.password" />
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary">
+            登录
+          </el-button>
+        </el-form-item>
+      </el-form>
+    </div>
   </div>
 </template>
 
 <script>
-// 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
-// 例如：import 《组件名称》 from '《组件路径》';
-
 export default {
-// import引入的组件需要注入到对象中才能使用
   components: {},
   data () {
-    // 这里存放数据
     return {
-
+      formData: {
+        userName: '',
+        password: ''
+      }
     }
   },
-  // 监听属性 类似于data概念
-  computed: {},
-  // 监控data中的数据变化
-  watch: {},
-  // 生命周期 - 创建完成（可以访问当前this实例）
-  created () {
-
-  },
-  // 生命周期 - 挂载完成（可以访问DOM元素）
-  mounted () {
-
-  },
-  beforeCreate () {}, // 生命周期 - 创建之前
-  beforeMount () {}, // 生命周期 - 挂载之前
-  beforeUpdate () {}, // 生命周期 - 更新之前
-  updated () {}, // 生命周期 - 更新之后
-  beforeDestroy () {}, // 生命周期 - 销毁之前
-  destroyed () {}, // 生命周期 - 销毁完成
-  activated () {},
-  // 方法集合
   methods: {
 
-  } // 如果页面有keep-alive缓存功能，这个函数会触发
+  }
 }
 </script>
 <style lang='scss' scoped>
-//@import url(); 引入公共css类
+.login-container {
+  position: relative;
+}
 
+.login-container-bg {
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+}
+
+// https://blog.csdn.net/freshlover/article/details/11579669 CSS positioning
+.login-form-container {
+  z-index: 100;
+  width: 50%;
+  height: 50%;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px 0 rgba(150, 150, 150, 0.3);
+  padding: 30px;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
 </style>

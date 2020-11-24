@@ -2,13 +2,13 @@ import axios from 'axios'
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_API_URL,
-  timeout: 5000 // 请求超时时间
+  timeout: 5000 // Request timeout
 })
 
-// 请求拦截器
+// Request interceptor
 service.interceptors.request.use(
   config => {
-    // 判断token
+    // token
     return config
   },
   error => {
@@ -17,7 +17,7 @@ service.interceptors.request.use(
   }
 )
 
-// 响应拦截器
+// Response interceptor
 service.interceptors.response.use(
   response => {
     console.log(response.data)

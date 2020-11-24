@@ -1,20 +1,19 @@
 <template>
   <div class="app">
     <el-container>
-      <!-- 左侧边栏 -->
+      <!-- left sidebar -->
       <el-aside width="200px">
-        <!-- 头像 + 性别 -->
+        <!-- head -->
         <div class="sidebar-head-container">
           <router-link key="userHead" class="sidebar-head-link" to="/">
             <el-avatar shape="square" :size="50" :src="require('@/assets/default/default-user.png')">
-              <!-- 图片加载失败是显示的默认图片 -->
               <img src="@/assets/default/default-img.png">
             </el-avatar>
           </router-link>
           <label class="sidebar-name">XXXX</label>
           <label class="sidebar-motto">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</label>
         </div>
-        <!-- 菜单 -->
+        <!-- menu -->
         <el-scrollbar class="sidebar-menu-scrollbar">
           <el-menu
             class="sidebar-menu"
@@ -23,22 +22,21 @@
             <menu-item v-for="(item, index) in menuItems" :key="index" :item="item" />
           </el-menu>
         </el-scrollbar>
-        <!-- 退出登录 -->
+        <!-- exit -->
         <div class="sidebar-logout-container">
           <i class="el-icon-d-arrow-left pointer" />
         </div>
       </el-aside>
-      <!-- 主体区域 -->
+      <!-- main -->
       <el-main>
-        <el-scrollbar class="main-scrollbar">
-          <!-- 回到顶部 -->
-          <el-backtop target=".el-main" />
-          <!-- 过渡动画 -->
-          <transition name="transition" mode="out-in">
-            <!-- Vue页面组件显示区域 -->
-            <router-view />
-          </transition>
-        </el-scrollbar>
+        <!-- back top -->
+        <el-backtop target=".el-main" />
+        <!-- Transition animations -->
+        <transition name="transition" mode="out-in">
+          <!-- <keep-alive> https://cn.vuejs.org/v2/api/#keep-alive Caching components save performance -->
+          <!-- Display Component -->
+          <router-view />
+        </transition>
       </el-main>
     </el-container>
   </div>
@@ -127,32 +125,23 @@ export default {
   text-align: center;
 }
 
-.main-scrollbar {
-  width: 100%;
-  height: 100%;
-}
-
 .el-backtop {
   box-shadow: 0 0 6px rgba(0,0,0,.3);
 }
 
-// .el-main::-webkit-scrollbar {
-//   /*滚动条整体样式*/
-//   /*高宽分别对应横竖滚动条的尺寸*/
-//   width: 5px;
-//   height: 1px;
-// }
+.el-main::-webkit-scrollbar {
+  /* The size of the scroll bar */
+  width: 5px;
+  height: 1px;
+}
 
-// .el-main::-webkit-scrollbar-thumb {
-//   /*滚动条里面小方块*/
-//   border-radius: 5px;
-//   background-color: skyblue;
-// }
+.el-main::-webkit-scrollbar-thumb {
+  /* scroll bar */
+  border-radius: 5px;
+  background-color: rgba(144,147,153,.3);
+}
 
 // .el-main::-webkit-scrollbar-track {
-//   /*滚动条里面轨道*/
-//   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-//   background: #ededed;
-//   border-radius: 5px;
+//   /* track */
 // }
 </style>
