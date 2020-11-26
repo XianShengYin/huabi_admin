@@ -1,12 +1,16 @@
 import request from '@/utils/request'
 
-// 请求地址前缀
-const prefix = process.env.NODE_ENV === 'development' ? '/mock' : ''
+// request address prefix
+// const prefix = process.env.NODE_ENV === 'development' ? '/mock' : ''
 
 export function blogs() {
-  return request({ url: `${prefix}/api/blogs`, method: 'get' })
+  return request({ url: '/api/blogs', method: 'get' })
 }
 
 export function blogTypes() {
-  return request({ url: `${prefix}/api/blogTypes`, method: 'get' })
+  return request({ url: '/api/blogTypes', method: 'get' })
+}
+
+export function login(data) {
+  return request({ url: '/api/login', method: 'post', data })
 }

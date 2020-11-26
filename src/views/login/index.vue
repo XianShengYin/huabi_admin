@@ -1,19 +1,21 @@
 <!--  -->
 <template>
   <div class="app-main login-container">
-    <!-- https://www.zcool.com.cn/work/ZMjA2ODY4MTI=.html -->
-    <el-image class="login-container-bg" :src="require('@/assets/logo.png')" fit="cover" />
+    <!-- <el-image class="login-container-bg" :src="require('@/assets/logo.png')" fit="cover" /> -->
     <div class="login-form-container">
-      <el-form ref="form" class="login-form" :model="formData" autocomplete="on" label-position="left">
-        <el-form-item label="用户名">
-          <el-input v-model="formData.userName" />
+      <el-form
+        ref="loginForm" v-loading="loginButtonLoading" class="login-form" :model="formData" :rules="formRules"
+        autocomplete="on"
+      >
+        <el-form-item prop="username">
+          <el-input v-model="formData.username" class="login-form-input" placeholder="请输入用户名" prefix-icon="el-icon-user" />
         </el-form-item>
-        <el-form-item label="密码">
-          <el-input v-model="formData.password" />
+        <el-form-item prop="password">
+          <el-input v-model="formData.password" class="login-form-input" placeholder="请输入密码" prefix-icon="el-icon-lock" show-password />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary">
-            登录
+          <el-button class="login-form-button" type="primary" round :loading="loginButtonLoading" @click="login()">
+            <span class="spacing20">登</span>录
           </el-button>
         </el-form-item>
       </el-form>
@@ -22,24 +24,48 @@
 </template>
 
 <script>
+import { login } from '@/api'
 export default {
   components: {},
   data () {
     return {
       formData: {
-        userName: '',
+        username: '',
         password: ''
-      }
+      },
+      // https://github.com/yiminghe/async-validator ValidateRules
+      formRules: {
+        username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
+        password: [{ required: true, message: '请输入密码', trigger: 'blur' },
+          { min: 6, max: 15, message: '请输入6~15位密码', trigger: 'blur' }]
+      },
+      loginButtonLoading: false
     }
   },
   methods: {
-
+    login() {
+      this.$refs.loginForm.validate(async (valid) => {
+        if (valid) {
+          this.loginButtonLoading = true
+          const { data } = await login(this.formData)
+          if (data && data.code === 20000) {
+            this.$message.success({ message: '登录成功！', duration: 1000, center: true })
+            this.$store.dispatch('setUserInfo', data.data)
+            this.$router.push('/')
+          } else {
+            this.$message.error('登录失败：' + data.msg)
+          }
+          this.loginButtonLoading = false
+        }
+      })
+    }
   }
 }
 </script>
 <style lang='scss' scoped>
 .login-container {
   position: relative;
+  overflow: hidden;
 }
 
 .login-container-bg {
@@ -51,13 +77,24 @@ export default {
 // https://blog.csdn.net/freshlover/article/details/11579669 CSS positioning
 .login-form-container {
   z-index: 100;
-  width: 50%;
-  height: 50%;
+  width: 400px;
+  height: 224px;
   border-radius: 10px;
-  box-shadow: 0 2px 4px 0 rgba(150, 150, 150, 0.3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  background-color: #ffffff;
   padding: 30px;
   margin: auto;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.login-form-button {
+  width: 100%;
+}
+</style>
+<style>
+/* > The child selector */
+.login-form-input > .el-input__inner {
+  border-radius: 20px;
 }
 </style>

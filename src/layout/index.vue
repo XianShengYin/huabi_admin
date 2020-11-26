@@ -10,8 +10,8 @@
               <img src="@/assets/default/default-img.png">
             </el-avatar>
           </router-link>
-          <label class="sidebar-name">XXXX</label>
-          <label class="sidebar-motto">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</label>
+          <label class="sidebar-name">{{ userInfo.name }}</label>
+          <label class="sidebar-motto">{{ userInfo.motto }}</label>
         </div>
         <!-- menu -->
         <el-scrollbar class="sidebar-menu-scrollbar">
@@ -52,7 +52,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['menuItems'])
+    ...mapGetters(['menuItems', 'userInfo'])
   },
   methods: {
   }

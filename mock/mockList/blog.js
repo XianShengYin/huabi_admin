@@ -1,7 +1,7 @@
 const Mock = require('mockjs')
 
 const blogs = app => {
-  app.get('/mock/api/blogs', function (req, res) {
+  app.get('/api/blogs', function (req, res) {
     const blogs = []
     for (let i = 0; i < 10; i++) {
       blogs.push(Mock.mock({
@@ -32,7 +32,7 @@ const blogs = app => {
 }
 
 const blogTypes = app => {
-  app.get('/mock/api/blogTypes', function (req, res) {
+  app.get('/api/blogTypes', function (req, res) {
     const blogTypes = []
     for (let i = 0; i < 10; i++) {
       blogTypes.push(Mock.mock({
