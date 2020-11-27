@@ -8,14 +8,14 @@
         autocomplete="on"
       >
         <el-form-item prop="username">
-          <el-input v-model="formData.username" class="login-form-input" placeholder="请输入用户名" prefix-icon="el-icon-user" />
+          <el-input v-model="formData.username" class="login-form-input" placeholder="username" prefix-icon="el-icon-user" />
         </el-form-item>
         <el-form-item prop="password">
-          <el-input v-model="formData.password" class="login-form-input" placeholder="请输入密码" prefix-icon="el-icon-lock" show-password />
+          <el-input v-model="formData.password" class="login-form-input" placeholder="password" prefix-icon="el-icon-lock" show-password />
         </el-form-item>
         <el-form-item>
           <el-button class="login-form-button" type="primary" round :loading="loginButtonLoading" @click="login()">
-            <span class="spacing20">登</span>录
+            login
           </el-button>
         </el-form-item>
       </el-form>
@@ -35,9 +35,9 @@ export default {
       },
       // https://github.com/yiminghe/async-validator ValidateRules
       formRules: {
-        username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-        password: [{ required: true, message: '请输入密码', trigger: 'blur' },
-          { min: 6, max: 15, message: '请输入6~15位密码', trigger: 'blur' }]
+        username: [{ required: true, message: 'The user name cannot be empty', trigger: 'blur' }],
+        password: [{ required: true, message: 'The password cannot be empty', trigger: 'blur' },
+          { min: 6, max: 15, message: 'The password number is 6 to 15 bits', trigger: 'blur' }]
       },
       loginButtonLoading: false
     }
@@ -49,11 +49,11 @@ export default {
           this.loginButtonLoading = true
           const { data } = await login(this.formData)
           if (data && data.code === 20000) {
-            this.$message.success({ message: '登录成功！', duration: 1000, center: true })
+            this.$message.success({ message: 'login success', duration: 1000, center: true })
             this.$store.dispatch('setUserInfo', data.data)
             this.$router.push('/')
           } else {
-            this.$message.error('登录失败：' + data.msg)
+            this.$message.error('login error ：' + data.msg)
           }
           this.loginButtonLoading = false
         }

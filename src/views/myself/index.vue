@@ -1,49 +1,67 @@
 <!--  -->
 <template>
   <div class="app-main">
-    <h1>myself</h1>
+    <section-header>Myself&nbsp;•&nbsp;个人信息</section-header>
+    <el-form ref="form" :model="myselfForm" label-width="80px">
+      <el-form-item label="头像">
+        <el-input />
+      </el-form-item>
+      <el-form-item label="昵称">
+        <el-input />
+      </el-form-item>
+      <el-form-item label="座右铭">
+        <el-input />
+      </el-form-item>
+      <el-form-item label="QQ">
+        <el-input />
+      </el-form-item>
+      <el-form-item label="微信">
+        <el-input />
+      </el-form-item>
+      <el-form-item label="邮箱">
+        <el-input />
+      </el-form-item>
+      <el-form-item label="Github">
+        <el-input />
+      </el-form-item>
+      <el-form-item label="Gitee">
+        <el-input />
+      </el-form-item>
+      <el-form-item label="网易云">
+        <el-input />
+      </el-form-item>
+      <el-form-item label="bilibili">
+        <el-input />
+      </el-form-item>
+      <el-form-item label="描述">
+        <el-input />
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary">
+          保存
+        </el-button>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 
 <script>
-// 这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
-// 例如：import 《组件名称》 from '《组件路径》';
-
+import SectionHeader from '@/components/SectionHeader.vue'
 export default {
-// import引入的组件需要注入到对象中才能使用
-  components: {},
+  components: { SectionHeader },
   data() {
-    // 这里存放数据
     return {
-
+      myselfForm: {}
     }
   },
-  // 监听属性 类似于data概念
-  computed: {},
-  // 监控data中的数据变化
-  watch: {},
-  // 生命周期 - 创建完成（可以访问当前this实例）
   created() {
 
   },
-  // 生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {
-
-  },
-  beforeCreate() {}, // 生命周期 - 创建之前
-  beforeMount() {}, // 生命周期 - 挂载之前
-  beforeUpdate() {}, // 生命周期 - 更新之前
-  updated() {}, // 生命周期 - 更新之后
-  beforeDestroy() {}, // 生命周期 - 销毁之前
-  destroyed() {}, // 生命周期 - 销毁完成
-  activated() {},
-  // 方法集合
   methods: {
 
-  } // 如果页面有keep-alive缓存功能，这个函数会触发
+  }
 }
 </script>
 <style lang='scss' scoped>
-//@import url(); 引入公共css类
 
 </style>

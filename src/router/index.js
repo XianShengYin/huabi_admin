@@ -35,7 +35,7 @@ const routes = [
     path: '/myself',
     component: Layout,
     redirect: '/myself/index',
-    title: '我的',
+    title: 'Myself',
     children: [
       {
         path: 'index',
@@ -49,7 +49,7 @@ const routes = [
     path: '/post',
     component: Layout,
     redirect: '/post/index',
-    title: '动态',
+    title: 'Post',
     children: [
       {
         path: 'index',
@@ -63,7 +63,7 @@ const routes = [
     path: '/comment',
     component: Layout,
     redirect: '/comment/index',
-    title: '评论',
+    title: 'Comment',
     children: [
       {
         path: 'index',
@@ -77,7 +77,7 @@ const routes = [
     path: '/calendar',
     component: Layout,
     redirect: '/calendar/index',
-    title: '日历',
+    title: 'Calendar',
     children: [
       {
         path: 'index',
@@ -91,7 +91,7 @@ const routes = [
     path: '/note',
     component: Layout,
     redirect: '/note/index',
-    title: '笔记',
+    title: 'Note',
     children: [
       {
         path: 'index',
@@ -105,7 +105,7 @@ const routes = [
     path: '/cloudStorage',
     component: Layout,
     redirect: '/cloudStorage/index',
-    title: '云盘',
+    title: 'CloudStorage',
     children: [
       {
         path: 'index',
@@ -118,19 +118,19 @@ const routes = [
   {
     path: '/setting',
     component: Layout,
-    title: '设置',
+    title: 'Setting',
     children: [
       {
         path: 'sysConfig',
         name: 'sysConfig',
         component: () => import(/* webpackChunkName: "setting" */ '@/views/setting/sysConfig/index'),
-        title: '系统设置'
+        title: 'SysConfig'
       },
       {
         path: 'log',
         name: 'log',
         component: () => import(/* webpackChunkName: "setting" */ '@/views/setting/log/index'),
-        title: '系统日志'
+        title: 'SysLog'
       }
     ]
   },
