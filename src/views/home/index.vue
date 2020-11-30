@@ -5,7 +5,7 @@
       <el-col :span="12">
         <el-card class="home-card">
           <template v-slot:header>
-            <label class="home-card-title">动态数量</label>
+            <label class="home-card-title">Post Number • 动态数量</label>
           </template>
           <div />
         </el-card>
@@ -23,7 +23,7 @@
       <el-col :span="12">
         <el-card class="home-card">
           <template v-slot:header>
-            <label class="home-card-title">留言数量</label>
+            <label class="home-card-title">Comment Number • 留言数量</label>
           </template>
           <div />
         </el-card>
@@ -31,22 +31,23 @@
       <el-col :span="12">
         <el-card class="home-card">
           <template v-slot:header>
-            <label class="home-card-title">代办事项</label>
+            <label class="home-card-title">Todo • 代办事项</label>
+            <!-- 历史记录 -->
           </template>
           <div class="todo-container">
             <el-input v-model="newTodo" class="todo-input" placeholder="想要做什么？" autocomplete="off" />
             <div v-show="todoList.length !== 0" class="todo-operating-button-group">
               <el-link type="primary" :underline="false" disabled>
-                All
+                All • 全部
               </el-link>
               <el-link type="primary" :underline="false">
-                Active
+                Active • 实行
               </el-link>
               <el-link type="primary" :underline="false">
-                Completed
+                Completed • 完成
               </el-link>
               <el-link type="primary" :underline="false">
-                Clear completed
+                Clear completed • 清除
               </el-link>
             </div>
             <ul class="todo-list">

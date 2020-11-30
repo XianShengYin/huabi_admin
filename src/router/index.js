@@ -21,7 +21,7 @@ const routes = [
     path: '/',
     component: Layout,
     redirect: '/home',
-    hidden: true,
+    title: 'Home',
     children: [
       {
         path: 'home',

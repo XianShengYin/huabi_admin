@@ -1,37 +1,77 @@
 <!--  -->
 <template>
   <div class="app-main">
-    <section-header>Myself&nbsp;•&nbsp;个人信息</section-header>
-    <el-form ref="form" :model="myselfForm" label-width="80px">
+    <section-header>Myself • 个人信息</section-header>
+    <el-form ref="form" class="myselfForm" :model="myselfForm" label-position="top">
       <el-form-item label="头像">
         <el-input />
       </el-form-item>
       <el-form-item label="昵称">
-        <el-input />
+        <el-input v-model="myselfForm.name" placeholder="nickname • 昵称" />
       </el-form-item>
       <el-form-item label="座右铭">
-        <el-input />
-      </el-form-item>
-      <el-form-item label="QQ">
-        <el-input />
-      </el-form-item>
-      <el-form-item label="微信">
-        <el-input />
+        <el-input v-model="myselfForm.motto" placeholder="motto • 座右铭" />
       </el-form-item>
       <el-form-item label="邮箱">
-        <el-input />
+        <el-input placeholder="email • 邮箱" />
       </el-form-item>
-      <el-form-item label="Github">
-        <el-input />
-      </el-form-item>
-      <el-form-item label="Gitee">
-        <el-input />
-      </el-form-item>
-      <el-form-item label="网易云">
-        <el-input />
-      </el-form-item>
-      <el-form-item label="bilibili">
-        <el-input />
+      <!-- 这些应该改成动态添加 -->
+      <el-form-item label="社交圈">
+        <!-- QQ -->
+        <el-popover
+          placement="right"
+          width="400"
+          trigger="click"
+        >
+          <el-input />
+          <el-button slot="reference" icon="el-icon-eleme" circle />
+        </el-popover>
+        <!-- 微信 -->
+        <el-popover
+          placement="right"
+          width="400"
+          trigger="click"
+        >
+          <el-input />
+          <el-button slot="reference" icon="el-icon-eleme" circle />
+        </el-popover>
+        <!-- Github -->
+        <el-popover
+          placement="right"
+          width="400"
+          trigger="click"
+        >
+          <el-input />
+          <el-button slot="reference" icon="el-icon-eleme" circle />
+        </el-popover>
+        <!-- Gitee -->
+        <el-popover
+          placement="right"
+          width="400"
+          trigger="click"
+        >
+          <el-input />
+          <el-button slot="reference" icon="el-icon-eleme" circle />
+        </el-popover>
+        <!-- 网易云 -->
+        <el-popover
+          placement="right"
+          width="400"
+          trigger="click"
+        >
+          <el-input />
+          <el-button slot="reference" icon="el-icon-eleme" circle />
+        </el-popover>
+        <!-- bilibili -->
+        <el-popover
+          placement="right"
+          width="400"
+          trigger="click"
+        >
+          <el-input />
+          <el-button slot="reference" icon="el-icon-eleme" circle />
+        </el-popover>
+        <el-button icon="el-icon-plus" circle />
       </el-form-item>
       <el-form-item label="描述">
         <el-input />
@@ -47,15 +87,19 @@
 
 <script>
 import SectionHeader from '@/components/SectionHeader.vue'
+import { mapGetters } from 'vuex'
 export default {
   components: { SectionHeader },
   data() {
     return {
-      myselfForm: {}
+      myselfForm: { name: '', motto: '' }
     }
   },
+  computed: {
+    ...mapGetters(['userInfo'])
+  },
   created() {
-
+    this.myselfForm = Object.assign(this.myselfForm, this.userInfo)
   },
   methods: {
 
@@ -63,5 +107,7 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
-
+.myselfForm {
+  width: 65%;
+}
 </style>

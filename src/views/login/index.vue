@@ -8,10 +8,10 @@
         autocomplete="on"
       >
         <el-form-item prop="username">
-          <el-input v-model="formData.username" class="login-form-input" placeholder="username" prefix-icon="el-icon-user" />
+          <el-input v-model="formData.username" class="login-form-input" placeholder="username • 用户名" prefix-icon="el-icon-user" />
         </el-form-item>
         <el-form-item prop="password">
-          <el-input v-model="formData.password" class="login-form-input" placeholder="password" prefix-icon="el-icon-lock" show-password />
+          <el-input v-model="formData.password" class="login-form-input" placeholder="password • 密码" prefix-icon="el-icon-lock" show-password />
         </el-form-item>
         <el-form-item>
           <el-button class="login-form-button" type="primary" round :loading="loginButtonLoading" @click="login()">
@@ -35,9 +35,8 @@ export default {
       },
       // https://github.com/yiminghe/async-validator ValidateRules
       formRules: {
-        username: [{ required: true, message: 'The user name cannot be empty', trigger: 'blur' }],
-        password: [{ required: true, message: 'The password cannot be empty', trigger: 'blur' },
-          { min: 6, max: 15, message: 'The password number is 6 to 15 bits', trigger: 'blur' }]
+        username: [{ required: true, message: ' ', trigger: 'blur' }],
+        password: [{ required: true, message: ' ', trigger: 'blur' }]
       },
       loginButtonLoading: false
     }
@@ -49,11 +48,11 @@ export default {
           this.loginButtonLoading = true
           const { data } = await login(this.formData)
           if (data && data.code === 20000) {
-            this.$message.success({ message: 'login success', duration: 1000, center: true })
+            this.$message.success({ message: 'login success • 登录成功', duration: 1000, center: true })
             this.$store.dispatch('setUserInfo', data.data)
             this.$router.push('/')
           } else {
-            this.$message.error('login error ：' + data.msg)
+            this.$message.error('login error • 登录异常 ：' + data.msg)
           }
           this.loginButtonLoading = false
         }

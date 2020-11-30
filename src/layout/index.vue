@@ -5,7 +5,7 @@
       <el-aside width="200px">
         <!-- head -->
         <div class="sidebar-head-container">
-          <router-link key="userHead" class="sidebar-head-link" to="/">
+          <router-link key="userHead" class="sidebar-head-link" to="/myself">
             <el-avatar shape="square" :size="50" :src="require('@/assets/default/default-user.png')">
               <img src="@/assets/default/default-img.png">
             </el-avatar>
@@ -18,6 +18,7 @@
           <el-menu
             class="sidebar-menu"
             unique-opened
+            default-active="/"
           >
             <menu-item v-for="(item, index) in menuItems" :key="index" :item="item" />
           </el-menu>
@@ -111,11 +112,6 @@ export default {
   height: 100%;
   width: 100% !important;
   overflow-x: hidden !important;
-}
-
-.submenu-item {
-  text-align: center;
-  background-color: #fafbfc;
 }
 
 .sidebar-logout-container {
