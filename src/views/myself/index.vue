@@ -86,7 +86,7 @@
 </template>
 
 <script>
-import SectionHeader from '@/components/SectionHeader.vue'
+import SectionHeader from '@/components/SectionHeader'
 import { mapGetters } from 'vuex'
 export default {
   components: { SectionHeader },

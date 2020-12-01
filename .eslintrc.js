@@ -24,7 +24,8 @@ module.exports = {
         allowFirstLine: false
       }
     }],
-    "space-before-function-paren": 0
+    'space-before-function-paren': 0,
+    'vue/attribute-hyphenation': 0
   },
 
   extends: [

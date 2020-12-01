@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import MenuItem from '@/components/menu/MenuItem.vue'
+import MenuItem from '@/components/MenuItem'
 import { mapGetters } from 'vuex'
 export default {
   components: { MenuItem },

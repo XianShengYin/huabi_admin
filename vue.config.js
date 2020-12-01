@@ -1,5 +1,9 @@
 var path = require('path')
 
+function resolve(dir) {
+  return path.join(__dirname, dir)
+}
+
 module.exports = {
   // 基本路径
   publicPath: './',
@@ -39,10 +43,8 @@ module.exports = {
     },
     // 在其他中间件之前执行自定义的中间件
     before: app => {
-      if (process.env.NODE_ENV === 'development') {
-        const mock = require('./mock')
-        mock(app)
-      }
+      const mock = require('./mock')
+      mock(app)
     }
   },
   // https://www.jianshu.com/p/714ce38b9fdc config.optimization.runtimeChunk
@@ -54,5 +56,23 @@ module.exports = {
       vue: 'Vue',
       'element-ui': 'ElementUI'
     }
+  },
+  chainWebpack(config) {
+    // 配置svg文件处理
+    config.module
+      .rule('svg')
+      .exclude.add(resolve('src/icons'))
+      .end()
+    config.module
+      .rule('icons')
+      .test(/\.svg$/)
+      .include.add(resolve('src/icons'))
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({
+        symbolId: 'icon-[name]'
+      })
+      .end()
   }
 }
