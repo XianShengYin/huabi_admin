@@ -23,9 +23,10 @@
             <menu-item v-for="(item, index) in menuItems" :key="index" :item="item" />
           </el-menu>
         </el-scrollbar>
-        <!-- exit -->
+        <!-- 退出 -->
         <div class="sidebar-logout-container">
-          <i class="fa fa-sign-out fa-flip-horizontal fa-lg pointer" aria-hidden="true" />
+          <!-- <i class="fa fa-sign-out fa-flip-horizontal fa-lg pointer" aria-hidden="true" /> -->
+          <svg-icon iconClass="sign out" class="pointer" />
         </div>
       </el-aside>
       <!-- main -->
