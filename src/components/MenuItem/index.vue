@@ -15,7 +15,7 @@
         v-for="child in item.children"
         :key="child.path"
         :item="child"
-        :base-path="item.path + '/'"
+        :basePath="item.path + '/'"
       />
     </el-submenu>
   </div>

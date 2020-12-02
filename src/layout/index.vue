@@ -25,7 +25,7 @@
         </el-scrollbar>
         <!-- exit -->
         <div class="sidebar-logout-container">
-          <i class="el-icon-d-arrow-left pointer" />
+          <i class="fa fa-sign-out fa-flip-horizontal fa-lg pointer" aria-hidden="true" title="退出" />
         </div>
       </el-aside>
       <!-- main -->
