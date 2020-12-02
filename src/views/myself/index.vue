@@ -44,7 +44,7 @@ export default {
         email: '',
         circleList: [
           { title: 'QQ', icon: 'qq', isPic: 0, content: '26320401980' },
-          { title: '微信', icon: 'weixin', isPic: 1, content: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg' },
+          { title: '微信', icon: 'weixin', isPic: 1, content: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg' },
           { title: 'Github', icon: 'github', isPic: 0, content: 'https://github.com/XianShengYin' },
           { title: 'Gitee', icon: 'gitee', isPic: 0, content: 'https://gitee.com' },
           { title: '网易云', icon: 'wangyiyun', isPic: 0, content: 'https://music.163.com' },
