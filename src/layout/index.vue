@@ -25,8 +25,8 @@
         </el-scrollbar>
         <!-- 退出 -->
         <div class="sidebar-logout-container">
-          <!-- <i class="fa fa-sign-out fa-flip-horizontal fa-lg pointer" aria-hidden="true" /> -->
-          <svg-icon iconClass="sign out" class="pointer" />
+          <i class="fa fa-sign-out fa-flip-horizontal fa-lg pointer" aria-hidden="true" />
+          <!-- <svg-icon iconClass="sign out" class="pointer" /> -->
         </div>
       </el-aside>
       <!-- main -->
@@ -141,4 +141,9 @@ export default {
 // .el-main::-webkit-scrollbar-track {
 //   /* track */
 // }
+</style>
+<style>
+.sidebar-menu-scrollbar > .el-scrollbar__wrap {
+  overflow-x: hidden !important;
+}
 </style>

@@ -89,10 +89,3 @@ a:hover {
 .pointer {
   cursor: pointer;
 }
-
-/* ElementUI */
-
-// Remove the horizontal scrollbar of the el-scrollbar
-.el-scrollbar__wrap{
-  overflow-x: hidden !important;
-}

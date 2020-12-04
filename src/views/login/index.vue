@@ -33,7 +33,7 @@ export default {
         username: '',
         password: ''
       },
-      // https://github.com/yiminghe/async-validator ValidateRules
+      // https://github.com/yiminghe/async-validator 校验规则
       formRules: {
         username: [{ required: true, message: ' ', trigger: 'blur' }],
         password: [{ required: true, message: ' ', trigger: 'blur' }]
@@ -49,7 +49,7 @@ export default {
           const { data } = await login(this.formData)
           if (data && data.code === 20000) {
             this.$message.success({ message: 'login success • 登录成功', duration: 1000, center: true })
-            this.$store.dispatch('setUserInfo', data.data)
+            this.$store.commit('LOGIN', data.data)
             this.$router.push('/')
           } else {
             this.$message.error('login error • 登录异常 ：' + data.msg)
@@ -73,7 +73,7 @@ export default {
   z-index: 50;
 }
 
-// https://blog.csdn.net/freshlover/article/details/11579669 CSS positioning
+// https://blog.csdn.net/freshlover/article/details/11579669 CSS 元素定位
 .login-form-container {
   z-index: 100;
   width: 400px;
@@ -92,7 +92,7 @@ export default {
 }
 </style>
 <style>
-/* > The child selector */
+/* > 子选择器 */
 .login-form-input > .el-input__inner {
   border-radius: 20px;
 }

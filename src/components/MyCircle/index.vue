@@ -6,7 +6,7 @@
           <img v-if="item.isPic" :src="item.content" class="circle-pic">
           <label v-else>{{ item.content }}</label>
         </template>
-        <el-button circle @click="editCircle()">
+        <el-button circle @click="editCircle(item)">
           <svg-icon :iconClass="item.icon" />
         </el-button>
       </el-tooltip>
@@ -15,7 +15,7 @@
       <el-button icon="el-icon-plus" circle @click="addCircle()" />
     </div>
 
-    <edit-circle v-if="showEditDialog" :show.sync="showEditDialog" />
+    <edit-circle :show.sync="showEditDialog" />
   </div>
 </template>
 <script>
@@ -38,7 +38,7 @@ export default {
     addCircle() {
       this.showEditDialog = true
     },
-    editCircle() {
+    editCircle(item) {
       this.showEditDialog = true
     }
   }

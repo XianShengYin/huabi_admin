@@ -2,7 +2,10 @@
 <template>
   <div class="app-main">
     <section-header>Myself • 个人信息</section-header>
-    <el-form ref="form" class="myselfForm" :model="myselfForm" label-position="top">
+    <el-form
+      ref="form" v-loading="loading" element-loading-background="#F6F8F9" class="myselfForm" :model="myselfForm"
+      label-position="top"
+    >
       <el-form-item label="头像">
         <el-input />
       </el-form-item>
@@ -19,7 +22,7 @@
         <my-circle :data="myselfForm.circleList" />
       </el-form-item>
       <el-form-item label="描述">
-        <el-input />
+        <el-input v-model="myselfForm.description" />
       </el-form-item>
       <el-form-item>
         <el-button type="primary">
@@ -38,18 +41,13 @@ export default {
   components: { SectionHeader, MyCircle },
   data() {
     return {
+      loading: false,
       myselfForm: {
         name: '',
         motto: '',
         email: '',
-        circleList: [
-          { title: 'QQ', icon: 'qq', isPic: 0, content: '26320401980' },
-          { title: '微信', icon: 'weixin', isPic: 1, content: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg' },
-          { title: 'Github', icon: 'github', isPic: 0, content: 'https://github.com/XianShengYin' },
-          { title: 'Gitee', icon: 'gitee', isPic: 0, content: 'https://gitee.com' },
-          { title: '网易云', icon: 'wangyiyun', isPic: 0, content: 'https://music.163.com' },
-          { title: 'bilibili', icon: 'bilibili', isPic: 0, content: 'https://bilibili.com' }
-        ]
+        circleList: [],
+        description: ''
       }
     }
   },
@@ -58,6 +56,14 @@ export default {
   },
   created() {
     this.myselfForm = Object.assign(this.myselfForm, this.userInfo)
+    // const loading = this.$loading()
+    // setTimeout(() => {
+    //   loading.close()
+    // }, 1500)
+    this.loading = true
+    setTimeout(() => {
+      this.loading = false
+    }, 1500)
   },
   methods: {
 

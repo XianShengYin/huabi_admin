@@ -1,25 +1,25 @@
 import router from '@/router'
 import store from '@/store'
 
-// routing whitelist
+// 路由白名单
 const whiteList = ['/login']
 
-// global front guard
+// 全局前置守卫
 router.beforeEach((to, from, next) => {
-  // Not in the whitelist
+  // 跳转路由不在白名单
   if (whiteList.indexOf(to.path) === -1) {
-    // No login information
-    if (!store.getters.userInfo.token) {
-      next('/login')
-    } else {
+    // 用户是否授权
+    if ('name' in store.getters.userInfo && store.getters.token) {
       next()
+    } else {
+      next('/login')
     }
   } else {
     next()
   }
 })
 
-// global post guard
+// 全局后置守卫
 router.afterEach(() => {
 
 })
