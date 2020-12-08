@@ -73,6 +73,7 @@ export default {
     .el-main {
       height: 100%;
       width: calc(100% - 200px);
+      padding: unset;
     }
   }
 }

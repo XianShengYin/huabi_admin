@@ -22,7 +22,7 @@
         <my-circle :data="myselfForm.circleList" />
       </el-form-item>
       <el-form-item label="描述">
-        <el-input v-model="myselfForm.description" />
+        <mavon-editor ref="descriptionEditor" v-model="myselfForm.editorValue" :autofocus="false" style="min-height:600px;" @change="editorChange" />
       </el-form-item>
       <el-form-item>
         <el-button type="primary">
@@ -37,8 +37,12 @@
 import SectionHeader from '@/components/SectionHeader'
 import MyCircle from '@/components/MyCircle'
 import { mapGetters } from 'vuex'
+// https://www.jianshu.com/p/02379604ca9c mavon-editor 使用
+// https://github.com/hinesboy/mavonEditor mavon-editor github地址
+import { mavonEditor } from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
 export default {
-  components: { SectionHeader, MyCircle },
+  components: { SectionHeader, MyCircle, mavonEditor },
   data() {
     return {
       loading: false,
@@ -48,7 +52,9 @@ export default {
         email: '',
         circleList: [],
         description: ''
-      }
+      },
+      editorValue: '',
+      editorHtml: ''
     }
   },
   computed: {
@@ -63,10 +69,15 @@ export default {
     this.loading = true
     setTimeout(() => {
       this.loading = false
-    }, 1500)
+    }, 500)
   },
   methods: {
-
+    editorChange(value, render) {
+      // render 为 markdown 解析后的结果[html]
+      console.log('editorValue : ', value)
+      this.editorHtml = render
+      console.log('editorHtml : ', render)
+    }
   }
 }
 </script>

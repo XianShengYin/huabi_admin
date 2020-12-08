@@ -6,14 +6,14 @@
     :visible.sync="show" center width="600px" class="circle-dialog" :close-on-click-modal="false"
     :before-close="beClose" @open="dialogOpen" @close="dialogClose"
   >
-    <el-form ref="circleForm" :model="form" class="circle-form">
+    <el-form ref="circleForm" :model="circleForm" class="circle-form">
       <el-form-item>
         <el-row :gutter="20">
           <el-col :span="8">
-            <el-input v-model="form.name" placeholder="名称" />
+            <el-input v-model="circleForm.title" placeholder="名称" />
           </el-col>
           <el-col :span="8">
-            <el-select v-model="form.name" placeholder="图标">
+            <el-select v-model="circleForm.icon" placeholder="图标">
               <el-option v-for="(item, index) in circleSelects" :key="index" :label="item.label" :value="item.value">
                 <div class="form-icon-option">
                   <span>{{ item.label }}</span>
@@ -24,7 +24,7 @@
           </el-col>
           <el-col :span="8" style="text-align: center;">
             <el-switch
-              v-model="form.isPic" active-text="图片" inactive-text="链接" active-color="#409eff" inactive-color="#409eff"
+              v-model="circleForm.isPic" active-text="图片" inactive-text="链接" active-color="#409eff" inactive-color="#409eff"
               active-value="1" inactive-value="0"
             />
           </el-col>
@@ -33,7 +33,7 @@
       <el-form-item>
         <transition name="el-fade-in-linear" mode="out-in">
           <el-upload
-            v-if="+form.isPic" class="form-pic-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false"
+            v-if="+circleForm.isPic" class="form-pic-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false"
             :on-success="uploadSuccess" :on-error="uploadError" :before-upload="uploadBefore"
           >
             <img v-if="imageUrl" :src="imageUrl" class="form-pic">
@@ -44,7 +44,7 @@
               </div>
             </template>
           </el-upload>
-          <el-input v-else v-model="form.name" placeholder="链接地址" />
+          <el-input v-else v-model="circleForm.content" placeholder="链接地址" />
         </transition>
       </el-form-item>
     </el-form>
@@ -75,10 +75,11 @@ export default {
   data() {
     return {
       dialogFormVisible: false,
-      a: { title: 'QQ', icon: 'qq', isPic: 0, content: 'https://qq.com/26320401980' },
-      form: {
-        name: '',
-        isPic: 0
+      circleForm: {
+        title: '',
+        icon: '',
+        isPic: 0,
+        content: ''
       },
       circleSelects: [{
         value: 'qq',
@@ -119,10 +120,10 @@ export default {
     },
     dialogOpen() {
       console.log('dialog data : ', this.data)
-      this.form = Object.assign(this.form, this.data)
+      this.circleForm = Object.assign(this.circleForm, this.data)
     },
     dialogClose() {
-      console.log('111', this.form)
+      console.log('111', this.circleForm)
       console.log('弹出框关闭')
     },
     // 上传成功
