@@ -2,92 +2,180 @@
 <template>
   <div class="app-main">
     <section-header>Post • 动态</section-header>
-    <div class="tabs">
-      <el-button type="text" size="small">
-        动态
-      </el-button>
-      <el-button type="text" size="small">
-        文章
-      </el-button>
+
+    <div class="post-header">
+      <el-dropdown @command="switchCommand">
+        <span class="el-dropdown-link">
+          {{ nowSwitchTitle }}<i class="el-icon-arrow-down el-icon--right" />
+        </span>
+        <template v-slot:dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item v-for="(item, index) in switchSelects" :key="index" :command="item.command">
+              {{ item.title }}
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+      <div>
+        <el-button size="mini" icon="el-icon-edit" round>
+          添加
+        </el-button>
+        <el-button size="mini" icon="el-icon-refresh" circle />
+      </div>
     </div>
-    <el-table
-      :data="tableData"
-      style="width: 100%"
-    >
-      <el-table-column
-        type="selection"
-        width="55"
-      />
-      <!-- 悬浮显示标题图 -->
-      <el-table-column
-        fixed
-        prop="date"
-        width="150"
+
+    <transition name="el-fade-in-linear" mode="out-in">
+      <div v-if="nowSwitch === 'post'" class="post-timeline">
+        <el-timeline>
+          <el-timeline-item timestamp="2020/12/15" placement="top">
+            <el-card class="post-timeline-card">
+              <el-dropdown>
+                <i class="el-icon-more more" />
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item>编辑</el-dropdown-item>
+                  <el-dropdown-item>隐藏</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+              <h4>更新 Github 模板</h4>
+              <p>王小虎 提交于 2020/12/15 20:46</p>
+            </el-card>
+          </el-timeline-item>
+          <el-timeline-item timestamp="2020/12/14" placement="top">
+            <el-card>
+              <h4>更新 Github 模板</h4>
+              <p>王小虎 提交于 2020/12/14 20:46</p>
+            </el-card>
+          </el-timeline-item>
+          <el-timeline-item timestamp="2018/4/12" placement="top">
+            <el-card>
+              <h4>更新 Github 模板</h4>
+              <p>王小虎 提交于 2018/4/12 20:46</p>
+            </el-card>
+          </el-timeline-item>
+          <el-timeline-item timestamp="2018/4/3" placement="top">
+            <el-card>
+              <h4>更新 Github 模板</h4>
+              <p>王小虎 提交于 2018/4/3 20:46</p>
+            </el-card>
+          </el-timeline-item>
+          <el-timeline-item timestamp="2018/4/2" placement="top">
+            <el-card>
+              <h4>更新 Github 模板</h4>
+              <p>王小虎 提交于 2018/4/2 20:46</p>
+            </el-card>
+          </el-timeline-item>
+        </el-timeline>
+      </div>
+
+      <el-table
+        v-if="nowSwitch === 'article'"
+        :data="tableData"
+        stripe
+        class="post-table"
       >
-        <template v-slot:header>
-          <el-input size="mini" placeholder="标题搜索" />
-        </template>
-      </el-table-column>
-      <el-table-column
-        prop="name"
-        label="分类"
-        width="120"
-        :filters="[{ text: '前端', value: '前端' }, { text: '后端', value: '后端' }]"
-      />
-      <el-table-column
-        prop="date"
-        label="发表时间"
-        width="120"
-      />
-      <el-table-column
-        prop="city"
-        label="PV"
-        width="120"
-      />
-      <el-table-column
-        prop="date"
-        label="标签"
-      />
-      <!-- 原创 / 转载(悬浮显示转载地址) -->
-      <el-table-column
-        prop="city"
-        label="来源"
-      />
-      <!-- 开启 / 关闭 -->
-      <el-table-column
-        prop="city"
-        label="评论"
-      />
-      <!-- 首页显示的那三个, 超过后提示弹出框选择取消其中一个 -->
-      <el-table-column
-        prop="city"
-        label="推荐"
-      />
-      <!-- 草稿 / 正常 / 隐藏 -->
-      <el-table-column
-        prop="zip"
-        label="状态"
-        width="120"
-      />
-      <el-table-column
-        fixed="right"
-        width="150"
-      >
-        <template v-slot:header>
-          <el-button type="text" size="small">
-            添加
-          </el-button>
-        </template>
-        <template>
-          <el-button type="text" size="small">
-            查看
-          </el-button>
-          <el-button type="text" size="small">
-            编辑
-          </el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+        <el-table-column
+          type="selection"
+          width="55"
+        />
+        <!-- 悬浮显示标题图 -->
+        <el-table-column
+          fixed
+          prop="title"
+          width="200"
+        >
+          <template v-slot:header>
+            <el-input size="mini" placeholder="标题搜索" />
+          </template>
+        </el-table-column>
+        <el-table-column
+          prop="type"
+          label="分类"
+          width="100"
+          :filters="[{ text: '前端', value: '前端' }, { text: '后端', value: '后端' }, { text: '开发工具', value: '开发工具' }]"
+        />
+        <el-table-column
+          prop="tags"
+          label="标签"
+          min-width="100"
+          show-overflow-tooltip
+          :filters="[{ text: 'Java', value: 'Java' }, { text: 'JS', value: 'JS' }, { text: 'Linux', value: 'Linux' }, { text: 'IDEA', value: 'IDEA' }]"
+        />
+        <el-table-column
+          prop="publishedTime"
+          width="200"
+          sortable
+        >
+          <template v-slot:header>
+            <!-- <el-input size="mini" placeholder="发表时间" style="width:60%;" /> -->
+            <el-popover
+              placement="top"
+              trigger="hover"
+            >
+              <el-date-picker
+                v-model="value2"
+                type="datetimerange"
+                :picker-options="pickerOptions"
+                range-separator="至"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期"
+                align="right"
+              />
+              <el-button slot="reference" size="mini">
+                发表时间
+              </el-button>
+            </el-popover>
+          </template>
+        </el-table-column>
+        <el-table-column
+          prop="pv"
+          label="PV"
+          width="60"
+        />
+        <!-- 开启 / 关闭 -->
+        <el-table-column
+          prop="commentNum"
+          label="评论"
+          :filters="[{ text: '开启', value: '开启' }, { text: '关闭', value: '关闭' }]"
+        />
+        <!-- 原创 / 转载(悬浮显示转载地址) -->
+        <el-table-column
+          prop="source"
+          label="来源"
+          :filters="[{ text: '原创', value: '原创' }, { text: '转载', value: '转载' }]"
+        />
+        <!-- 首页显示的那三个, 超过后提示弹出框选择取消其中一个 -->
+        <el-table-column
+          prop="recommend"
+          label="推荐"
+          :filters="[{ text: '是', value: '是' }, { text: '否', value: '否' }]"
+        />
+        <!-- 草稿 / 正常 / 隐藏 -->
+        <el-table-column
+          prop="status"
+          label="状态"
+          width="80"
+          :filters="[{ text: '草稿', value: '草稿' }, { text: '正常', value: '正常' }, { text: '隐藏', value: '隐藏' }]"
+        />
+        <el-table-column
+          fixed="right"
+          width="150"
+        >
+          <template v-slot:header>
+            <el-button type="text" size="small">
+              添加
+            </el-button>
+          </template>
+          <template>
+            <el-button type="text" size="small">
+              查看
+            </el-button>
+            <el-button type="text" size="small">
+              编辑
+            </el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </transition>
 
     <!-- 其他组件 -->
     <mavon-editor v-if="false" ref="descriptionEditor" v-model="editorValue" :autofocus="false" style="min-height:600px;" />
@@ -101,76 +189,177 @@ import 'mavon-editor/dist/css/index.css'
 export default {
   components: { SectionHeader, mavonEditor },
   data() {
-    // 这里存放数据
     return {
-      activeName: 'article',
+      nowSwitch: 'post',
+      switchSelects: [{ title: '动态', command: 'post' }, { title: '文章', command: 'article' }],
       tableData: [{
-        date: '2016-05-03',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
+        title: '关于防范资本操控舆论',
+        type: '前端',
+        tags: 'Vue.js,CSS',
+        publishedTime: '2020年12月15日 13点15分',
+        pv: 233,
+        commentNum: 23,
+        source: '原创',
+        recommend: '是',
+        status: '正常'
       }, {
-        date: '2016-05-02',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
+        title: '关于防范资本操控舆论',
+        type: '前端',
+        tags: 'JavaScript,jQuery',
+        publishedTime: '2020年12月16日 13点15分',
+        pv: 0,
+        commentNum: 0,
+        source: '原创',
+        recommend: '否',
+        status: '草稿'
       }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
+        title: '关于防范资本操控舆论',
+        type: '服务器',
+        tags: 'Linux',
+        publishedTime: '2020年11月25日 13点15分',
+        pv: 233,
+        commentNum: 23,
+        source: '原创',
+        recommend: '否',
+        status: '正常'
       }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
+        title: '关于防范资本操控舆论',
+        type: '开发工具',
+        tags: 'IDEA',
+        publishedTime: '2020年11月15日 13点15分',
+        pv: 233,
+        commentNum: 23,
+        source: '原创',
+        recommend: '是',
+        status: '隐藏'
       }, {
-        date: '2016-05-08',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
+        title: '关于防范资本操控舆论',
+        type: '后端',
+        tags: 'Java,Spring Boot',
+        publishedTime: '2020年12月15日 9点15分',
+        pv: 0,
+        commentNum: 0,
+        source: '转载',
+        recommend: '否',
+        status: '草稿'
       }, {
-        date: '2016-05-06',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
+        title: '关于防范资本操控舆论',
+        type: '前端',
+        tags: 'Vue.js,CSS',
+        publishedTime: '2020年12月1日 13点15分',
+        pv: 233,
+        commentNum: 23,
+        source: '原创',
+        recommend: '否',
+        status: '正常'
       }, {
-        date: '2016-05-07',
-        name: '王小虎',
-        province: '上海',
-        city: '普陀区',
-        address: '上海市普陀区金沙江路 1518 弄',
-        zip: 200333
+        title: '关于防范资本操控舆论',
+        type: '前端',
+        tags: 'Vue.js,CSS',
+        publishedTime: '2020年12月13日 13点15分',
+        pv: 233,
+        commentNum: 23,
+        source: '原创',
+        recommend: '否',
+        status: '正常'
       }],
+      pickerOptions: {
+        shortcuts: [{
+          text: '最近一周',
+          onClick(picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+            picker.$emit('pick', [start, end])
+          }
+        }, {
+          text: '最近一个月',
+          onClick(picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+            picker.$emit('pick', [start, end])
+          }
+        }, {
+          text: '最近三个月',
+          onClick(picker) {
+            const end = new Date()
+            const start = new Date()
+            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
+            picker.$emit('pick', [start, end])
+          }
+        }]
+      },
+      value2: '',
       editorValue: ''
     }
+  },
+  // https://cn.vuejs.org/v2/api/#computed 计算属性 (使用了箭头函数，则 this 不会指向这个组件的实例，不过你仍然可以将其实例作为函数的第一个参数来访问)
+  computed: {
+    // 当前列表名称
+    nowSwitchTitle: _this => _this.switchSelects.filter(v => v.command === _this.nowSwitch)[0].title
   },
   created() {
 
   },
   methods: {
-    handleClick(tab, event) {
-      console.log(tab, event)
+    // 列表切换
+    switchCommand(command) {
+      console.log('command : ', command)
+      this.nowSwitch = command
     }
   }
 }
 </script>
 <style lang='scss' scoped>
-.tabs {
+.post-header {
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 0 15px;
+}
+
+.el-dropdown-link {
+  cursor: pointer;
+  color: #409EFF;
+}
+
+.el-icon-arrow-down {
+  font-size: 12px;
+}
+
+.post-timeline {
+  width: 100%;
   background-color: #ffffff;
+  padding-top: 20px;
+}
+
+.post-timeline-card {
+  position: relative;
+  .el-dropdown {
+    position: absolute;
+    right: 20px;
+    top: 12px;
+    .more {
+      cursor: pointer;
+      font-size: 20px;
+    }
+  }
+}
+
+.el-timeline {
+  padding-right: 40px;
+}
+</style>
+<style>
+.post-table > .el-table__body-wrapper::-webkit-scrollbar {
+  height: auto;
+}
+
+.post-table > .el-table__body-wrapper::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: rgba(144,147,153,.3);
 }
 </style>
