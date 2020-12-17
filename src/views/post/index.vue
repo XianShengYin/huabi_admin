@@ -76,12 +76,15 @@
         <el-table-column
           type="selection"
           width="55"
+          header-align="center"
+          align="center"
         />
         <!-- 悬浮显示标题图 -->
         <el-table-column
           fixed
           prop="title"
           width="200"
+          header-align="center"
         >
           <template v-slot:header>
             <el-input size="mini" placeholder="标题搜索" />
@@ -91,6 +94,8 @@
           prop="type"
           label="分类"
           width="100"
+          header-align="center"
+          align="center"
           :filters="[{ text: '前端', value: '前端' }, { text: '后端', value: '后端' }, { text: '开发工具', value: '开发工具' }]"
         />
         <el-table-column
@@ -98,12 +103,15 @@
           label="标签"
           min-width="100"
           show-overflow-tooltip
+          header-align="center"
+          align="center"
           :filters="[{ text: 'Java', value: 'Java' }, { text: 'JS', value: 'JS' }, { text: 'Linux', value: 'Linux' }, { text: 'IDEA', value: 'IDEA' }]"
         />
         <el-table-column
           prop="publishedTime"
           width="200"
           sortable
+          header-align="center"
         >
           <template v-slot:header>
             <!-- <el-input size="mini" placeholder="发表时间" style="width:60%;" /> -->
@@ -130,23 +138,31 @@
           prop="pv"
           label="PV"
           width="60"
+          header-align="center"
+          align="center"
         />
         <!-- 开启 / 关闭 -->
         <el-table-column
-          prop="commentNum"
+          prop="commentFunction"
           label="评论"
+          header-align="center"
+          align="center"
           :filters="[{ text: '开启', value: '开启' }, { text: '关闭', value: '关闭' }]"
         />
         <!-- 原创 / 转载(悬浮显示转载地址) -->
         <el-table-column
           prop="source"
           label="来源"
+          header-align="center"
+          align="center"
           :filters="[{ text: '原创', value: '原创' }, { text: '转载', value: '转载' }]"
         />
         <!-- 首页显示的那三个, 超过后提示弹出框选择取消其中一个 -->
         <el-table-column
           prop="recommend"
           label="推荐"
+          header-align="center"
+          align="center"
           :filters="[{ text: '是', value: '是' }, { text: '否', value: '否' }]"
         />
         <!-- 草稿 / 正常 / 隐藏 -->
@@ -154,11 +170,15 @@
           prop="status"
           label="状态"
           width="80"
+          header-align="center"
+          align="center"
           :filters="[{ text: '草稿', value: '草稿' }, { text: '正常', value: '正常' }, { text: '隐藏', value: '隐藏' }]"
         />
         <el-table-column
           fixed="right"
           width="150"
+          header-align="center"
+          align="center"
         >
           <template v-slot:header>
             <el-button type="text" size="small">
@@ -198,7 +218,7 @@ export default {
         tags: 'Vue.js,CSS',
         publishedTime: '2020年12月15日 13点15分',
         pv: 233,
-        commentNum: 23,
+        commentFunction: '开启',
         source: '原创',
         recommend: '是',
         status: '正常'
@@ -208,7 +228,7 @@ export default {
         tags: 'JavaScript,jQuery',
         publishedTime: '2020年12月16日 13点15分',
         pv: 0,
-        commentNum: 0,
+        commentFunction: '开启',
         source: '原创',
         recommend: '否',
         status: '草稿'
@@ -218,7 +238,7 @@ export default {
         tags: 'Linux',
         publishedTime: '2020年11月25日 13点15分',
         pv: 233,
-        commentNum: 23,
+        commentFunction: '开启',
         source: '原创',
         recommend: '否',
         status: '正常'
@@ -228,7 +248,7 @@ export default {
         tags: 'IDEA',
         publishedTime: '2020年11月15日 13点15分',
         pv: 233,
-        commentNum: 23,
+        commentFunction: '开启',
         source: '原创',
         recommend: '是',
         status: '隐藏'
@@ -238,7 +258,7 @@ export default {
         tags: 'Java,Spring Boot',
         publishedTime: '2020年12月15日 9点15分',
         pv: 0,
-        commentNum: 0,
+        commentFunction: '开启',
         source: '转载',
         recommend: '否',
         status: '草稿'
@@ -248,7 +268,7 @@ export default {
         tags: 'Vue.js,CSS',
         publishedTime: '2020年12月1日 13点15分',
         pv: 233,
-        commentNum: 23,
+        commentFunction: '关闭',
         source: '原创',
         recommend: '否',
         status: '正常'
@@ -258,7 +278,7 @@ export default {
         tags: 'Vue.js,CSS',
         publishedTime: '2020年12月13日 13点15分',
         pv: 233,
-        commentNum: 23,
+        commentFunction: '开启',
         source: '原创',
         recommend: '否',
         status: '正常'
